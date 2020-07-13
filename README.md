@@ -1,10 +1,10 @@
 # Nitrogen deposition effects on Swiss butterfly richness
 
-[![DOI](https://doi.org/10.1101/2020.07.10.195354)](https://doi.org/10.1101/2020.07.10.195354)
+This repository contains the data and R-scripts to reproduce the results presented in the MS "Effects of nitrogen deposition on butterfly species richness on the landscape scale". In the manuscript we describe the results of a literature review that we conducted to compile a list with the relevant predictor variables that explained variation in butterfly species richness. We then compiled these predictor variables for the study plots of the [Biodiversity Monitoring Switzerland](https://en.wikipedia.org/wiki/Biodiversity_Monitoring_Switzerland) (BDM) program to compare the effect of N deposition on butterfly species richness  as compared to the effects of predictor variables  that are important according to the literature review.
 
-This repository contains the data and R-scripts to reproduce the results presented in the MS "Effects of nitrogen deposition on butterfly species richness on the landscape scale". This manuscript should be submitted to [Conservation Biology](https://conbio.onlinelibrary.wiley.com/journal/15231739).
+The manuscript is under review with [Conservation Biology](https://conbio.onlinelibrary.wiley.com/journal/15231739) and available as a preprint from https://doi.org/10.1101/2020.07.10.195354. Please site it as 
 
-In the manuscript we describe the results of a literature review that we conducted to compile a list with the relevant predictor variables that explained variation in butterfly species richness. We then compiled these predictor variables for the study plots of the [Biodiversity Monitoring Switzerland](https://en.wikipedia.org/wiki/Biodiversity_Monitoring_Switzerland) (BDM) program to compare the effect of N deposition on butterfly species richness  as compared to the effects of predictor variables  that are important according to the literature review.
+Roth, Tobias, Lukas Kohli, Beat Rihm, Reto Meier, and Valentin Amrhein. ‘Effects of Nitrogen Deposition on Butterfly Species Richness on the Landscape Scale’. Preprint. Ecology, 12 July 2020. https://doi.org/10.1101/2020.07.10.195354.
 
 The repository contains the following folders.
 
