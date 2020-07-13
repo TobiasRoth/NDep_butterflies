@@ -4,7 +4,7 @@ This repository contains the data and R-scripts to reproduce the results present
 
 The manuscript is under review with [Conservation Biology](https://conbio.onlinelibrary.wiley.com/journal/15231739) and available as a preprint from https://doi.org/10.1101/2020.07.10.195354. Please site it as 
 
-Roth, Tobias, Lukas Kohli, Beat Rihm, Reto Meier, and Valentin Amrhein. ‘Effects of Nitrogen Deposition on Butterfly Species Richness on the Landscape Scale’. Preprint. Ecology, 12 July 2020. https://doi.org/10.1101/2020.07.10.195354.
+*Roth, Tobias, Lukas Kohli, Beat Rihm, Reto Meier, and Valentin Amrhein. ‘Effects of Nitrogen Deposition on Butterfly Species Richness on the Landscape Scale’. Preprint. Ecology, 12 July 2020. https://doi.org/10.1101/2020.07.10.195354.*
 
 The repository contains the following folders.
 
