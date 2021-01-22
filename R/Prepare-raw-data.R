@@ -45,7 +45,7 @@ tbl(db, "STICHPROBE_Z7") %>%
 ausw <- 
   tbl(db, "KD_Z7") %>%  
   left_join(tbl(db, "Raumdaten_Z7")) %>% 
-  # filter(!is.na(yearPl) & !is.na(yearBu)) %>%  
+  filter(!is.na(yearPl) & !is.na(yearBu)) %>%
   filter(yearP >= startyr & yearPl <= endyr) %>% 
   filter(Aufnahmetyp == "Normalaufnahme_Z7" | Aufnahmetyp == "BDM_LANAG_Normalaufnahme_Z7") %>% 
   filter(Verdichtung_BDM == "nein") %>% 
@@ -56,7 +56,7 @@ ausw <-
     year_Pl = yearPl,
     year_Bu = yearBu
   ) %>% 
-  as_tibble() %>% nrow()
+  as_tibble() 
 
 # Add shapes of 1km2
 ausw <- 
@@ -340,7 +340,7 @@ dat <-
   add_column("PSR" = sqrt(tt) -15)
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Dependent variable ----
+# Dependent variable: butterfly species richness ----
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Species richness of butterflies
 tt <- 
@@ -358,8 +358,51 @@ dat <-
   add_column("BSR" = sqrt(tt) -5)
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Prepare dat for all butterfly species ----
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Select all butterfly records from analysed surveys
+bu <- tbl(db, "TF") %>% 
+  dplyr::filter(!is.na(aID_SP)) %>% 
+  dplyr::select(aID_KD, aID_SP, Ind) %>% 
+  as_tibble() %>% 
+  filter(!is.na(match(aID_KD, ausw$aID_KD)))
+
+# Prepare list of species 
+spec <- tbl(db, "Arten") %>% 
+  dplyr::filter(Z7Z9 == 1 & TF == 1) %>% 
+  dplyr::select(aID_SP, Gattung, Art, RL, UZL) %>% 
+  as_tibble() %>% 
+  left_join(
+    bu %>% 
+      group_by(aID_SP) %>% 
+      dplyr::summarise(
+        records = n())
+  ) %>% 
+  replace_na(list(records = 0)) 
+sum(spec$records > 0)  
+
+# Prepare sites x species matrix with number of records
+spec <- spec %>% dplyr::filter(records >= 20) 
+rec <- matrix(NA, nrow = nrow(ausw), ncol = nrow(spec))
+for(s in 1:nrow(spec)) {
+  rec[, s] <- ausw %>% 
+    st_set_geometry(NULL) %>% 
+    dplyr::select(aID_KD) %>% 
+    left_join(
+      bu %>% 
+        dplyr::filter(aID_SP == spec$aID_SP[s]) 
+    ) %>% 
+    replace_na(list(Ind = 0)) %>% 
+    pull(Ind)
+}
+  
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Save data ----
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Save data
 write_csv(dat, path = "data/raw-data.csv")
+write_csv(spec, path = "data/butterflies.csv")
+save(rec, file = "data/rec.RData")
+
 
