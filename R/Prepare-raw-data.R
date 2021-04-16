@@ -382,7 +382,7 @@ spec <- tbl(db, "Arten") %>%
   replace_na(list(records = 0)) 
 sum(spec$records > 0)  
 
-# Prepare sites x species matrix with number of records
+# Prepare sites x species matrix with number of individuals recorded
 spec <- spec %>% dplyr::filter(records >= 20) 
 rec <- matrix(NA, nrow = nrow(ausw), ncol = nrow(spec))
 for(s in 1:nrow(spec)) {

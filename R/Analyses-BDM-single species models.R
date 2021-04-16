@@ -79,21 +79,19 @@ rbind(
     y = "Effect size of N deposition",
     x = ""
   )
-ggsave("results/FIG_4-Ndep_effects_species_abundance.pdf", width = 7, height = 3.5)
-
-
+ggsave("results/FIG_3-Ndep_effects_species_abundance.pdf", width = 7, height = 3.5)
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Save species list as Appendix A4 ----
+# Save species list as Appendix S4 ----
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 openxlsx::write.xlsx(
   spec %>% transmute(
     Genus = Gattung,
     Species = Art,
     RL = RL,
-    UZL = UZL,
+    `target species` = UZL,
     Ndep_Effect = N_effect
   ), 
-  file = "results/TABLE_A4-NdepEff_species.xlsx")
+  file = "results/S5-NdepEff_species.xlsx")
 
 

@@ -13,8 +13,8 @@ dat <- read_csv("data/raw-data.csv")
 dat$ele2 <- dat$ele^2
 
 # Load data from literature review
-LR_studies <- read_excel("literature_review/A2-Result_of_review.xlsx", sheet = "References")
-LR_dat <- read_excel("literature_review/A2-Result_of_review.xlsx", sheet = "Variables") %>% 
+LR_studies <- read_excel("literature_review/S2-Result_of_review.xlsx", sheet = "References")
+LR_dat <- read_excel("literature_review/S2-Result_of_review.xlsx", sheet = "Variables") %>% 
   mutate(Category = factor(Category, levels = c("Environment", "Habitat", "Vegetation", "Others")))
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -40,8 +40,8 @@ LR_dat %>%
 LR_dat %>% 
   group_by(Category, Subcategory) %>% 
   summarise(
-    `Number of variables` = n_distinct(Predictor_variable),
-    `Studies` = n_distinct(Reference),
+    `Number of predictor variables` = n_distinct(Predictor_variable),
+    `Number of studies` = n_distinct(Reference),
     Importance = mean(Effect != 0) %>% round(2),
     Direction = mean(Effect %>% as.numeric, na.rm = TRUE) %>% round(2)) %>% 
   write.xlsx("results/TABLE_2-summary-review.xlsx")

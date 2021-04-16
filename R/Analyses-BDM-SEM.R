@@ -7,6 +7,8 @@ rm(list=ls(all=TRUE))
 library(tidyverse)
 library(lavaan)
 library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
 library(readxl)
 
 # Read data
@@ -49,7 +51,7 @@ ed <- create_edge_df(
 create_graph(
   nodes_df = no,
   edges_df = ed) %>%
-  export_graph(file_name = "results/FIG_1-generic-model.pdf", file_type = "pdf")
+  export_graph(file_name = "results/S4-generic-model.pdf", file_type = "pdf")
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Apply main model ----
@@ -103,7 +105,7 @@ ed$penwidth[ed$penwidth < -10] <- -10
 create_graph(
   nodes_df = no,
   edges_df = ed) %>%
-  export_graph(file_name = "results/FIG_3a-SEM-results-all-data.pdf", file_type = "pdf")
+  export_graph(file_name = "results/FIG_2a-SEM-results-all-data.pdf", file_type = "pdf")
 
 # Run SEM to data of sites <1600m
 d <- dat %>% filter(ele < ((1500 - 500) / 200))
@@ -124,7 +126,7 @@ ed$penwidth[ed$penwidth < -10] <- -10
 create_graph(
   nodes_df = no,
   edges_df = ed) %>%
-  export_graph(file_name = "results/FIG_3b-SEM-results-below_1600m.pdf", file_type = "pdf")
+  export_graph(file_name = "results/FIG_2b-SEM-results-below_1600m.pdf", file_type = "pdf")
 
 # Run SEM to data of sites <1600m
 d <- dat %>% filter(ele >= ((1500 - 500) / 200))
@@ -145,7 +147,7 @@ ed$penwidth[ed$penwidth < -10] <- -10
 create_graph(
   nodes_df = no,
   edges_df = ed) %>%
-  export_graph(file_name = "results/FIG_3c-SEM-results-above_1600m.pdf", file_type = "pdf")
+  export_graph(file_name = "results/FIG_2c-SEM-results-above_1600m.pdf", file_type = "pdf")
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Apply model with direct N deposition effect on butterfly species richness ----
@@ -182,5 +184,5 @@ ed$penwidth[ed$penwidth < -10] <- -10
 create_graph(
   nodes_df = no,
   edges_df = ed) %>%
-  export_graph(file_name = "results/A4-SEM-with_direct_N_effect.pdf", file_type = "pdf")
+  export_graph(file_name = "results/S6-SEM-with_direct_N_effect.pdf", file_type = "pdf")
 

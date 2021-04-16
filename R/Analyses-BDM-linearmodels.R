@@ -9,6 +9,7 @@ library(ggthemes)
 library(arm)
 library(broom)
 library(openxlsx)
+library(readxl)
 
 # Read data
 dat <- read_csv("data/raw-data.csv")
@@ -104,12 +105,12 @@ modlist <- list(
   landuse, 
   minimalistic)
 modname <- c(
-  "(1) Full model", 
-  "(2) Full model without\nmicroclimate variables",
-  "(3) Topo-climate model", 
-  "(4) Climate model", 
-  "(5) Land-use model", 
-  "(6) Minimalistic model")
+  "Full model", 
+  "Full model without\nmicroclimate variables",
+  "Topo-climate model", 
+  "Climate model", 
+  "Land-use model", 
+  "Minimalistic model")
 
 # Make plot
 map_df(modlist, getpost) %>% 
@@ -125,7 +126,7 @@ map_df(modlist, getpost) %>%
   coord_flip() +
   theme_clean() + 
   theme(axis.line = element_blank())
-ggsave("results/FIG_2-linear_model_results.pdf", width = 7, height = 3.5)
+ggsave("results/FIG_1-linear_model_results.pdf", width = 7, height = 3.5)
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Table of results from full model ----
@@ -139,6 +140,6 @@ full %>%
     `Predictor variable` = term,
     Description = Description,
     Estimate = round(estimate, 3),
-    `Std-Error` = round(std.error, 3),
-    `P-value` = round(p.value, 3))  %>% 
+    SE = round(std.error, 3),
+    P = round(p.value, 3))  %>% 
   write.xlsx("results/TABLE_3-results-full-model.xlsx")

@@ -19,6 +19,6 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...)
 }
 
 # Make correlation matrix
-png("results/A3-corellation_between_variables.png", width = 2000, height = 2000)
+png("results/S3-corellation_between_variables.png", width = 2000, height = 2000)
 pairs(dat[, -1], upper.panel = panel.cor)
 dev.off()
