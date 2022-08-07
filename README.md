@@ -46,5 +46,5 @@ Folder that contains material from the literature review literature on variables
 
 ### Results
 
-Folder that contains figures and tables with key results of the analyses. All the files in this folder are produced by on of the R-Skripts in folder [R](R). 
+Folder that contains figures and tables with key results of the analyses. All the files in this folder are produced by one of the R-Skripts in folder [R](R). 
 
